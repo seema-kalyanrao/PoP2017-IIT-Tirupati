@@ -2,6 +2,11 @@ What you learnt inside the class?
 
 Week1
 
-#1 Learnt life cycles?
-#2 Learnt team work?
-#3 Learnt something....
+#1 syntax and schemantic.
+#2 formal definition of language.
+#3 formal methodes of describing syntax.
+#4  backus naur form(BNF)
+#5 BNF fundamentals:
+      non terminals, terminals, grammer
+      BNF rules.
+#6 Parse tree/abstract syntax tree.
