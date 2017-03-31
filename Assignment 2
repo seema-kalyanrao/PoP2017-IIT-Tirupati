@@ -4,36 +4,57 @@ type pip = Two | Three | Four | Five | Six | Seven | Eight | Nine | Ten |
            Jack | Queen | King | Ace 
 let pips = [Two; Three; Four; Five; Six; Seven; Eight; Nine; Ten;
             Jack; Queen; King; Ace]
- 
 type suit = Diamonds | Spades | Hearts | Clubs
 let suits = [Diamonds; Spades; Hearts; Clubs]
- 
 type card = pip * suit
- 
 let full_deck = Array.of_list (List.concat (List.map (fun pip -> List.map (fun suit -> (pip, suit)) suits) pips))
- 
-(* Fisher-Yates shuffle *)
 let shuffle deck =
   for i = Array.length deck - 1 downto 1 do
     let j = Random.int (i+1) in
-    (* swap deck.(i) and deck.(j) *)
     let temp = deck.(i) in
     deck.(i) <- deck.(j);
     deck.(j) <- temp
   done
 
 
-Code for Fibonacci sequence(recursive)
+Code for catalans number in ocaml language  
 
-let rec fib_rec n =
-  if n < 2 then
-    n
-  else
-    fib_rec (n - 1) + fib_rec (n - 2)
+let catalan : int ref = ref 0 in
+Printf.printf "%d ," 1 ;
+for i = 2 to 9  do
+let nm : int ref = ref 1 in
+let den : int ref = ref 1 in
+for k = 2 to i do
+nm := (!nm)*(i+k);
+den := (!den)*k;
+catalan := (!nm)/(!den) ;
+done;
+print_int (!catalan); print_string "," ;
+done;;
+
+output:
+1 ,2,5,14,42,132,429,1430,4862
+
+code for combinations in ocaml language(Dynamic Programming Solution)
+
+let comb m xs =
+  let xs = Array.of_list xs in
  
-(* with support for negatives *)
-let rec fib = function 
-    0 -> 0
-  | 1 -> 1
-  | n -> if n > 0 then fib (n-1) + fib (n-2)
-         else fib (n+2) - fib (n+1)
+  if m > Array.length xs then
+    []
+  else begin
+ 
+    let arr = Array.make (m+1) [] in
+    arr.(0) <- [[]];
+ 
+    for j = 0 to Array.length xs - m do
+      for i = 1 to m do
+       arr.(i) <- arr.(i) @ List.map (fun ys -> xs.(j+i-1)::ys) arr.(i-1)
+      done 
+    done;
+ 
+    arr.(m)
+ 
+  end
+;;
+comb 3 [0;1;2;3;4];;
